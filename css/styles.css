@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+/*==========Google Fonts==========*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,600;1,700&display=swap');
+
+/*==========Root==========*/
+:root {
+
+    --container-width-grande: 80%;
+    --container-width-medio: 97%;
+}
+
+/*==========Reset CSS==========*/
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*==========Body==========*/
+body {
+    height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    background: #D6D58E;
+}
+
+/*==========Navbar==========*/
+nav {
+    background: #fff;
+    width: 100vw;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.2);
+}
+.nav__container {
+    width: var(--container-width-grande);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav__logo {
+    font-family: 'Nunito';
+    font-size: 1.5rem;
+    color: var(--escuro-cor);
+    font-weight: 900;
+}
+.nav__logo span {
+    color: hsl(0, 100%, 50%);
+}
+.nav__links {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    height: 100%;
+}
+.nav__links li {
+    height: 100%;
+}
+.nav__links li a {
+    color: #000;
+    font-weight: 600;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: color 400ms ease;
+    position: relative;
+}
+.nav__links li a:hover {
+    color: #ff0000;  
+}
+.nav__toggle-btn {
+    display: none;
+}
+
+/*==========Media Query Navbar Tablet / Mobile==========*/
+@media (min-width: 0px) and (max-width: 1024px) {
+    .nav__container {
+        width: var(--container-width-medio);
+        position: relative;
+    }
+    .nav__links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        display: none;
+        perspective: 500px;
+    }
+
+    /*==========Animação==========*/
+    .nav__links li {
+        width: 100vw;
+        transform: rotateX(90deg);
+        transform-origin: top right;
+        animation: animacao 1s ease forwards;
+        opacity: 0;
+    }
+    .nav__links li:nth-child(2) {
+        animation-delay: 300ms;
+    }
+    .nav__links li:nth-child(3) {
+        animation-delay: 500ms;
+    }
+    .nav__links li:nth-child(4) {
+        animation-delay: 800ms;
+    }
+    .nav__links li:nth-child(5) {
+        animation-delay: 1s;
+    }
+
+    @keyframes animacao {
+        to {
+            transform: rotate(0);
+            opacity: 1;
+        }
+    }
+    .nav__links li a {
+        background: #fff;
+        height: 3.5rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 3rem 0 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.267);
+    }
+    .nav__links li a.active::after {
+        display: none;
+    }
+    .nav__toggle-btn {
+        display: inline-block;
+        font-size: 1.5rem;
+        color: #000;
+        border: none;
+        background: rgba(0, 0, 0, 0);
+        cursor: pointer;
+        margin-right: 20px;
+    }
+    #nav__toggle-close {
+        display: none;
+    }
+    
+}
